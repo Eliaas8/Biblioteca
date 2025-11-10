@@ -30,7 +30,7 @@ def agregar_libro(titulo, autor, genero, estado):
     elif estado == 'no leido':
         estado = 'no leído'
     elif estado not in ['leído', 'no leído']:
-        print("⚠ Estado inválido. Solo se acepta 'leído' o 'no leído'.")
+        print("Intenta otra vez. Solo se acepta 'leído' o 'no leído'.")
         return
 
     with conectar_db() as conn:
@@ -38,11 +38,11 @@ def agregar_libro(titulo, autor, genero, estado):
             INSERT INTO libros (titulo, autor, genero, estado)
             VALUES (?, ?, ?, ?)
         ''', (titulo, autor, genero, estado))
-    print(" Libro agregado exitosamente.")
+    print(" Libro agregado.")
 
 def actualizar_libro(libro_id, campo, nuevo_valor):
     if campo not in ['titulo', 'autor', 'genero', 'estado']:
-        print(" Campo inválido. Solo se puede actualizar: titulo, autor, genero o estado.")
+        print(" Campo inválido. Solo puedes actualizar: titulo, autor, genero o estado.")
         return
 
     try:
@@ -53,7 +53,7 @@ def actualizar_libro(libro_id, campo, nuevo_valor):
             elif nuevo_valor == 'no leido':
                 nuevo_valor = 'no leído'
             elif nuevo_valor not in ['leído', 'no leído']:
-                print("⚠ Estado inválido. Solo se acepta 'leído' o 'no leído'.")
+                print(" Estado inválido. Solo se acepta 'leído' o 'no leído'.")
                 return
 
         with conectar_db() as conn:
@@ -69,7 +69,7 @@ def actualizar_libro(libro_id, campo, nuevo_valor):
 def eliminar_libro(libro_id):
     with conectar_db() as conn:
         conn.execute('DELETE FROM libros WHERE id = ?', (libro_id,))
-    print(" Libro eliminado exitosamente.")
+    print(" Libro eliminado.")
 
 def ver_libros():
     with conectar_db() as conn:
@@ -128,7 +128,7 @@ def menu():
         print("5. Buscar libros")
         print("6. Salir")
 
-        opcion = input("\nSeleccione una opción: ").strip()
+        opcion = input("\nSelecciona que accion deseas realizar: ").strip()
 
         if opcion == '1':
             titulo = input("Título: ").strip()
@@ -161,11 +161,12 @@ def menu():
             buscar_libros(busqueda)
 
         elif opcion == '6':
-            print(" Saliendo de la aplicación... ¡Hasta luego!")
+            print(" Saliendo.... ¡NO VUELAS :) !")
             break
 
         else:
-            print(" Opción no válida. Intente de nuevo.")
+            print(" Opción inválida, hazlo de nuevo.")
 
 if __name__ == "__main__":
     menu()
+
