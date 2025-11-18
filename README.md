@@ -15,7 +15,7 @@ Mostrar listado completo de libros
 
 Buscar libros por título, autor o género
 
-🗄 Base de Datos
+**Base de Datos**
 
 El programa usa SQLite y crea automáticamente el archivo biblioteca.db con la tabla:
 
